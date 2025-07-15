@@ -29,4 +29,16 @@ public final class EconomyBank extends JavaPlugin {
     public static EconomyBank getInstance(){
         return instance;
     }
+
+    public static void setInstance(EconomyBank instance) {
+        EconomyBank.instance = instance;
+    }
+
+    public BankManager getBankManager() {
+        return bankManager;
+    }
+
+    public void setBankManager(BankManager bankManager) {
+        this.bankManager = bankManager;
+    }
 }
