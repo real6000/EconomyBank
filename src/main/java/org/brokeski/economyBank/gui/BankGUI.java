@@ -32,6 +32,22 @@ public class BankGUI {
             gui.setItem(slot, filler);
         }
 
+        //slot 29 - deposit button
+        ItemStack depositButton = new ItemStack(Material.EMERALD);
+        ItemMeta depositMeta = depositButton.getItemMeta();
+        depositMeta.setDisplayName(ChatUtil.color("&aDeposit $100"));
+        depositMeta.setLore(java.util.List.of(ChatUtil.color("&7Left click to deposit $100")));
+        depositButton.setItemMeta(depositMeta);
+        gui.setItem(29, depositButton);
+
+        //slot 33 - withdraw button
+        ItemStack withdrawButton = new ItemStack(new ItemStack(Material.REDSTONE));
+        ItemMeta withdrawMeta = withdrawButton.getItemMeta();
+        withdrawMeta.setDisplayName(ChatUtil.color("&cWithdraw $100"));
+        withdrawMeta.setLore(java.util.List.of(ChatUtil.color("&7Left click to withdraw $100")));
+        withdrawButton.setItemMeta(withdrawMeta);
+        gui.setItem(33, withdrawButton);
+
         // Slot 4 (center top): Balance display
         ItemStack balanceItem = new ItemStack(Material.GOLD_INGOT);
         ItemMeta balMeta = balanceItem.getItemMeta();

@@ -2,8 +2,10 @@ package org.brokeski.economyBank.listeners;
 
 import org.brokeski.economyBank.EconomyBank;
 import org.brokeski.economyBank.model.BankAccount;
+import org.brokeski.economyBank.utils.ChatUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,6 +37,34 @@ public class BankGUIClickListener implements Listener {
 
             //for now simple item swap
             event.setCancelled(false);
+        }
+
+        // Withdraw button
+        if (slot == 33 && event.getClick().isLeftClick()) {
+            BankAccount account = EconomyBank.getInstance().getBankManager().getAccount(player.getUniqueId());
+            if (account.getBalance() >= 100) {
+                account.setBalance(account.getBalance() - 100);
+                player.getInventory().addItem(new ItemStack(Material.GOLD_NUGGET, 1));
+                player.sendMessage(ChatUtil.color("&aYou withdrew $100."));
+            } else {
+                player.sendMessage(ChatUtil.color("&cInsufficient funds to withdraw."));
+            }
+            player.closeInventory();
+            return;
+        }
+
+// Deposit button
+        if (slot == 29 && event.getClick().isLeftClick()) {
+            if (player.getInventory().containsAtLeast(new ItemStack(Material.GOLD_NUGGET), 1)) {
+                player.getInventory().removeItem(new ItemStack(Material.GOLD_NUGGET, 1));
+                BankAccount account = EconomyBank.getInstance().getBankManager().getAccount(player.getUniqueId());
+                account.setBalance(account.getBalance() + 100);
+                player.sendMessage(ChatUtil.color("&aYou deposited $100."));
+            } else {
+                player.sendMessage(ChatUtil.color("&cYou need at least 1 gold nugget to deposit."));
+            }
+            player.closeInventory();
+            return;
         }
 
         //sync stored inv on close (can also sync live)
