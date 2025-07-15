@@ -1,0 +1,6 @@
+name: EconomyBank
+version: '1.0'
+main: org.brokeski.economyBank.EconomyBank
+api-version: '1.21'
+authors: [ Real6000 ]
+description: Very cool bank for rich people
