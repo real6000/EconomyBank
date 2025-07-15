@@ -2,6 +2,7 @@ package org.brokeski.economyBank.gui;
 
 import org.brokeski.economyBank.model.BankAccount;
 import org.brokeski.economyBank.utils.ChatUtil;
+import org.brokeski.economyBank.utils.TimeUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
@@ -35,6 +36,10 @@ public class BankGUI {
         ItemStack balanceItem = new ItemStack(Material.GOLD_INGOT);
         ItemMeta balMeta = balanceItem.getItemMeta();
         balMeta.setDisplayName(ChatUtil.color("&6Balance: &e$" + String.format("%.2f", account.getBalance())));
+        balMeta.setLore(java.util.Arrays.asList(
+                ChatUtil.color("&7Interest rate: &a2.0% / hour"),
+                ChatUtil.color("&7Last opened: &f" + TimeUtil.formatTime(account.getLastUpdated()))
+        ));
         balanceItem.setItemMeta(balMeta);
         gui.setItem(4, balanceItem);
 
