@@ -1,5 +1,6 @@
 package org.brokeski.economyBank;
 
+import org.brokeski.economyBank.commands.BankCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class EconomyBank extends JavaPlugin {
@@ -11,7 +12,9 @@ public final class EconomyBank extends JavaPlugin {
         // Plugin startup logic
         instance = this;
         saveDefaultConfig();
+        getCommand("bank").setExecutor(new BankCommand());
         getLogger().info("EconomyBank has been enabled");
+
     }
 
     @Override
