@@ -9,3 +9,7 @@ commands:
     description: Opens your personal bank
     usage: /bank
     permission: economybank.use
+  bankstats:
+    description: View your bank account statistics
+    usage: /bankstats
+    permission: economybank.use

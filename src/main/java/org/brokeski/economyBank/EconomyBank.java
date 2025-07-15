@@ -1,6 +1,7 @@
 package org.brokeski.economyBank;
 
 import org.brokeski.economyBank.commands.BankCommand;
+import org.brokeski.economyBank.commands.BankStatsCommand;
 import org.brokeski.economyBank.listeners.BankGUIClickListener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -19,6 +20,7 @@ public final class EconomyBank extends JavaPlugin {
         this.bankManager = new BankManager();
 
         getCommand("bank").setExecutor(new BankCommand());
+        getCommand("bankstats").setExecutor(new BankStatsCommand());
         getServer().getPluginManager().registerEvents(new BankGUIClickListener(), this);
 
         startInterestTask();
