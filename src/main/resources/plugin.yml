@@ -4,3 +4,8 @@ main: org.brokeski.economyBank.EconomyBank
 api-version: '1.21'
 authors: [ Real6000 ]
 description: Very cool bank for rich people
+commands:
+  bank:
+    description: Opens your personal bank
+    usage: /bank
+    permission: economybank.use
