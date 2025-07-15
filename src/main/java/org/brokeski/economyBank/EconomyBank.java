@@ -1,6 +1,7 @@
 package org.brokeski.economyBank;
 
 import org.brokeski.economyBank.commands.BankCommand;
+import org.brokeski.economyBank.listeners.BankGUIClickListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class EconomyBank extends JavaPlugin {
@@ -15,6 +16,7 @@ public final class EconomyBank extends JavaPlugin {
         saveDefaultConfig();
         this.bankManager = new BankManager();
         getCommand("bank").setExecutor(new BankCommand());
+        getServer().getPluginManager().registerEvents(new BankGUIClickListener(), this);
         getLogger().info("EconomyBank has been enabled");
 
     }
