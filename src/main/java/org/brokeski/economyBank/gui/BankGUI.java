@@ -13,16 +13,34 @@ public class BankGUI {
     public static Inventory createBankGUI(BankAccount account){
         Inventory gui = Bukkit.createInventory(null, 36, "Your Bank");
 
-        //slot 0: balance info
-        ItemStack balanceItem = new ItemStack(Material.GOLD_INGOT);
-        ItemMeta meta = balanceItem.getItemMeta();
-        meta.setDisplayName(ChatUtil.color("&6Balance: &e$" + String.format("%.2f", account.getBalance())));
-        balanceItem.setItemMeta(meta);
-        gui.setItem(0, balanceItem);
+        //decorative border glass
+        ItemStack filler = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
+        ItemMeta meta = filler.getItemMeta();
+        meta.setDisplayName(" ");
+        filler.setItemMeta(meta);
 
-        //fill the rest with stored items
-        for(int i = 1; i < gui.getSize(); i++){
-            gui.setItem(i, account.getInventory().getItem(i - 1));
+        int[] borderSlots = {
+                // my bitch ahh counting the glass panes
+                0, 1, 2, 3, 4, 5, 6, 7, 8, //top row
+                9, 17, // left + right side
+                18, 26, // left + right side
+                27, 28, 29, 30, 31, 32, 33, 34, 35 //bottom row
+        };
+
+        for(int slot : borderSlots){
+            gui.setItem(slot, filler);
+        }
+
+        // Slot 4 (center top): Balance display
+        ItemStack balanceItem = new ItemStack(Material.GOLD_INGOT);
+        ItemMeta balMeta = balanceItem.getItemMeta();
+        balMeta.setDisplayName(ChatUtil.color("&6Balance: &e$" + String.format("%.2f", account.getBalance())));
+        balanceItem.setItemMeta(balMeta);
+        gui.setItem(4, balanceItem);
+
+        // Load stored items starting at slot 10
+        for (int i = 10; i < 27; i++) {
+            gui.setItem(i, account.getInventory().getItem(i - 10));
         }
 
         return gui;
