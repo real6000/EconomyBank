@@ -2,6 +2,7 @@ package org.brokeski.economyBank;
 
 import org.brokeski.economyBank.model.BankAccount;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -12,6 +13,10 @@ public class BankManager {
 
     public BankAccount getAccount(UUID uuid){
         return accounts.computeIfAbsent(uuid, id -> new BankAccount(id, 0.0));
+    }
+
+    public Collection<BankAccount> getAllAccounts() {
+        return accounts.values();
     }
 
     public void saveAll(){
