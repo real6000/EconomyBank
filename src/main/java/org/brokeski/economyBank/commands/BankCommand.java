@@ -4,6 +4,7 @@ import org.brokeski.economyBank.EconomyBank;
 import org.brokeski.economyBank.gui.BankGUI;
 import org.brokeski.economyBank.model.BankAccount;
 import org.brokeski.economyBank.utils.ChatUtil;
+import org.bukkit.Particle;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -28,6 +29,14 @@ public class BankCommand implements CommandExecutor {
         BankAccount account = EconomyBank.getInstance().getBankManager().getAccount(player.getUniqueId());
         Inventory gui = BankGUI.createBankGUI(account);
         player.openInventory(gui);
+
+        // Open GUI
+        player.openInventory(gui);
+
+        // Effects
+        player.playSound(player.getLocation(), org.bukkit.Sound.BLOCK_CHEST_OPEN, 1f, 1f);
+        player.getWorld().spawnParticle(Particle.HAPPY_VILLAGER, player.getLocation().add(0, 1, 0), 10);
+
         return true;
     }
 }
